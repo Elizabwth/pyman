@@ -6,7 +6,7 @@ pyman
 
 Requirements
 ------------
-Pyglet 1.2 alpha, pymunk.
+Pyglet 1.2 alpha, pymunk, PIL, OpenCV, numpy, meshpy
 
 
 Info
