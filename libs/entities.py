@@ -9,7 +9,7 @@ class Player(object):
 	def __init__(self, scene, position=(0,0)):
 		self.scene = scene
 
-		radius, mass = 7.5, .001
+		radius, mass = 7, .001 #7.5, .001
 
 		p_man_moment = pymunk.moment_for_circle(mass, 0, radius)
 
@@ -128,7 +128,6 @@ class Nums(object):
 			space.add_post_step_callback(space.remove, first_shape)
 			#first_shape.sprite.visible = False
 			first_shape.glpt.vertices = [-20000,-20000]
-
 			return False
 
 		scene.space.add_collision_handler(2, 1, begin = remove_num)

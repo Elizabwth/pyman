@@ -99,7 +99,7 @@ class PymunkUtil2(object):
 		self.circle_sleep_fill 	= (200,200,200,255)
 		self.poly_sleep_fill 	= (200,200,200,120)
 
-		self.sleep_color 		= (200,200,200)
+		self.sleep_color 		= (50,50,50)
 
 		opacity = 255
 		self.rand_colors 		= [(225,20,25,opacity),(20,227,25,opacity),(25,20,225,opacity),

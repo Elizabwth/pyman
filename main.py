@@ -10,7 +10,7 @@ pyglet.resource.path = ['resources/']
 pyglet.resource.path = ['resources/textures']
 pyglet.resource.reindex()
 
-#print("AVBin: "+str(pyglet.media.have_avbin))h
+print("AVBin: "+str(pyglet.media.have_avbin))
 
 class Window(pyglet.window.Window):
 	def __init__(self, *args, **kwargs):
@@ -22,7 +22,7 @@ class Window(pyglet.window.Window):
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST)
 
 		self.overlay_batch = pyglet.graphics.Batch()
-		self.ver_label = pyglet.text.Label(text = 'Not Not Pacman',
+		self.ver_label = pyglet.text.Label(text = 'pyman',
 										   font_name = 'Calibri', font_size = 8, bold = True,
 										   x = self.width, y = self.height,
 										   anchor_x = 'right', anchor_y = 'top',

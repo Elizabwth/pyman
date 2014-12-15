@@ -92,9 +92,9 @@ class GameLevel1(object):
 
 	def update_controls(self, keys):
 		if pyglet.window.key.LEFT in keys:
-			self.board_angle += 6
+			self.board_angle += 10
 		if pyglet.window.key.RIGHT in keys:
-			self.board_angle -= 6
+			self.board_angle -= 10
 
 	def draw(self):
 		self.director.update()
@@ -179,7 +179,7 @@ class Pymunk_Scene(Scene):
 		self.camera = camera.Camera(self.screen_resolution,
 									pos_rate=(1,1,1), 
 									target_rate=(1,1,1), 
-									angle_rate=10, 
+									angle_rate=5, 
 									fov_rate=1)
 
 		#### Level ####
@@ -192,7 +192,7 @@ class Pymunk_Scene(Scene):
 
 		self.keys_held = []
 
-		self.debug = False
+		self.debug = True
 
 	def update(self, dt):
 		self.space.step(dt)
@@ -206,8 +206,6 @@ class Pymunk_Scene(Scene):
 		pass
 
 	def draw(self):
-		
-		#self.pymunk_util.update()
 		self.camera.update((self.level.player.p_man.position[0],self.level.player.p_man.position[1],261), 
 						   (self.level.player.p_man.position[0],self.level.player.p_man.position[1],0), 
 						   self.level.board_angle, 90)
