@@ -33,7 +33,7 @@ def find_contours(img):
 			# to flip the y axis since
 			# PIL reads the image from the
 			# top left while pyglet draws
-			# from the top right
+			# from the bottom left
 			layers[i].append((data[0][0],height-data[0][1]))
 		i += 1
 	return layers
@@ -50,11 +50,11 @@ if __name__ == '__main__':
 	# actual poly
 	layers = find_contours('test.bmp')
 
-	window = pyglet.window.Window(width=640, height=480)
+	window = pyglet.window.Window(width=640, height=500)
 	@window.event
 	def on_draw():
 		window.clear()
-		
+		''' lines
 		for layer in layers:
 			p = []
 			for point in layer:
@@ -62,6 +62,26 @@ if __name__ == '__main__':
 				p.append(point[1])
 			pyglet.graphics.draw(len(p)//2, pyglet.gl.GL_LINE_LOOP,
 				('v2f', p))
+		'''
+
+		for layer in layers:
+			tris = pymunk.util.triangulate(layer)
+			t = []
+			for tri in tris:
+				t.append(tri[0][0]*2)
+				t.append(tri[0][1]*2)
+				t.append(tri[1][0]*2)
+				t.append(tri[1][1]*2)
+				t.append(tri[1][0]*2)
+				t.append(tri[1][1]*2)
+				t.append(tri[2][0]*2)
+				t.append(tri[2][1]*2)
+				t.append(tri[2][0]*2)
+				t.append(tri[2][1]*2)
+				t.append(tri[0][0]*2)
+				t.append(tri[0][1]*2)
+				pyglet.graphics.draw(len(t)//2, pyglet.gl.GL_LINES,
+					('v2f', t))
 		
 	pyglet.clock.set_fps_limit(60)
 	pyglet.app.run()

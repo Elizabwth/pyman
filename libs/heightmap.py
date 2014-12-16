@@ -9,9 +9,9 @@ import contours
 
 class Contour(object):
 	def __init__(self, image_path):
-
+		self.image_path = image_path
 		img = pyglet.image.load(image_path)
-		img_width, img_height = img.width, img.height
+		self.img_width, self.img_height = img.width, img.height
 
 		tmp = contours.find_contours(image_path)
 		self.layers = []
@@ -23,7 +23,7 @@ class Contour(object):
 		for layer in self.layers:
 			i = 0
 			for point in layer:
-				layer[i] = point[0]-(img_width/2)+.5, point[1]-(img_height/2)-.5
+				layer[i] = point[0]-(self.img_width/2)+.5, point[1]-(self.img_height/2)-.5
 				i += 1
 
 	def points(self):
@@ -46,6 +46,24 @@ class Contour(object):
 				space.add(seg)
 
 				i += 1
+
+	def create_polys(self, space, friction, elasticity):
+		shapes = contours.find_contours(self.image_path)
+		for shape in shapes:
+			i = 0
+			for point in shape:
+				shape[i] = point[0]-(self.img_width/2)+.5, point[1]-(self.img_height/2)-.5
+				i += 1
+
+		for shape in shapes:
+			tris = pymunk.util.triangulate(shape)
+			for tri in tris:
+				print tri
+				poly = pymunk.Poly(space.static_body, tri)
+				poly.group = 2
+				poly.elasticity = elasticity
+				poly.friction = friction
+				space.add(poly)
 
 
 

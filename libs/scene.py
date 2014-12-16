@@ -58,9 +58,9 @@ class GameLevel1(object):
 		self.scene = scene
 
 		lvlc = Contour('resources/levels/level1/lvl.bmp')
-		lvlc.create_segments(scene.space, radius=1, friction=.8, elasticity=1)
+		lvlc.create_polys(scene.space, friction=.8, elasticity=1)
 
-		self.player = entities.Player(scene, (0,-64.5))
+		self.player = entities.Player(scene, (0,-63))
 
 		lvlnums = Contour('resources/levels/level1/num.bmp')
 
@@ -84,9 +84,9 @@ class GameLevel1(object):
 		self.board_s.scale = 1
 
 
-		self.blinky = entities.Ghost(scene, 'blinky', (0,33.5))
-		self.inky 	= entities.Ghost(scene, 'inky', (-20,33.5))
-		self.pinky 	= entities.Ghost(scene, 'pinky', (20,33.5))
+		self.blinky = entities.Ghost(scene, 'blinky', (0,35.5))
+		self.inky 	= entities.Ghost(scene, 'inky', (-20,35.5))
+		self.pinky 	= entities.Ghost(scene, 'pinky', (20,35.5))
 
 		self.director = entities.Director(scene)
 
@@ -215,11 +215,12 @@ class Pymunk_Scene(Scene):
 		self.camera.set_3d()
 
 		self.level.draw()
+		self.normal_batch.draw()
+		
 		if self.debug:
 			self.pymunk_util.update()
 			self.debug_batch.draw()
-		self.normal_batch.draw()
-		self.level.draw()
+		
 
 		self.camera.ui_mode()
 		self.ui_batch.draw()
