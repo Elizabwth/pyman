@@ -60,10 +60,10 @@ class Player(object):
 		self.p_man.velocity = (0,0)
 		self.p_man.angular_velocity = 0
 		self.p_man_shape.collision_type = 1
+		self.p_man_shape.group = 1
 
 	def update_tween(self):
 		pos = (self.p_man.posx,self.p_man.posy)
-
 		self.p_man.position = pos
 
 class Ghost(object):
@@ -116,8 +116,7 @@ class Ghost(object):
 		self.ghost_b.angular_velocity = 0
 
 	def update_tween(self):
-		pos = (self.ghost_b.posx,self.ghost_b.posy)
-
+		pos = (self.ghost_b.posx, self.ghost_b.posy)
 		self.ghost_b.position = pos
 
 class Nums(object):
@@ -160,6 +159,7 @@ class Director(object):
 				player.velocity = (0,0)
 				player.dead = True
 				arbiter.shapes[1].collision_type = 100
+				arbiter.shapes[1].group = 2
 
 				## reset player position and angle
 				a = math.degrees(player.angle)
